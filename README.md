@@ -4,11 +4,10 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 First, run the development server:
 
-npm i
-npx prisma generate
-npm run dev
 
 ```bash
+npm i
+npx prisma generate
 npm run dev
 # or
 yarn dev
