@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Ensure text scales proportionally */
+body, html {
+  font-size: 1rem; /* Use rem units for scaling */
+  background-color: white;
+  ;
+}
+/* colors
+alice blue: #F0F8FF,
+off white: #FAF9F6,
+pearl: #F0F0E9, #FBFCF8
+egg shell: #F0EDE5 #FFF9E3
+cocoa: #2B2D42 #FFF1E6
+parchement: #D9BF77 #F0EDE5
+*/
+.pagination-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white; /* Optional: to ensure the pagination bar has a background */
+ 
+}

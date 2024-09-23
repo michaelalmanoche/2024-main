@@ -1,0 +1,154 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // adjust this based on your database (mysql, postgresql, etc.)
+  url      = env("DATABASE_URL")
+}
+
+model Operator {
+  id                 Int     @id @default(autoincrement())
+  firstname          String
+  middlename         String?
+  lastname           String
+  contact            String
+  region             String
+  city               String
+  brgy               String
+  street             String
+  type               String   // New field for driver or operator
+  emergency_name     String   // New field for emergency contact name
+  emergency_address  String   // New field for emergency contact address
+  emergency_contact  String   // New field for emergency contact number
+  archived           Boolean  @default(false)
+
+  Assignment         Assignment[]
+}
+
+model Driver {
+  id                 Int     @id @default(autoincrement())
+  firstname          String
+  middlename         String?
+  lastname           String
+  contact            String
+  region             String
+  city               String
+  brgy               String
+  street             String
+  type               String   // New field for driver or operator
+  license_no         String   @unique
+  dl_codes           String[]   // New field for DL codes
+  conditions         String[]  // New field for conditions
+  expiration_date    DateTime // New field for expiration date
+  emergency_name     String   // New field for emergency contact name
+  emergency_address  String   // New field for emergency contact address
+  emergency_contact  String   // New field for emergency contact number
+  archived           Boolean  @default(false)
+
+  Assignment         Assignment[]
+}
+
+model Van {
+  id                  Int     @id @default(autoincrement())
+  mv_file_no          String
+  plate_number        String
+  engine_no           String
+  chassis_no          String
+  denomination        String
+  piston_displacement String
+  number_of_cylinders Int
+  fuel                String
+  make                String
+  series              String
+  body_type           String
+  body_no             String
+  year_model          Int
+  gross_weight        Float
+  net_weight          Float
+  shipping_weight     Float
+  net_capacity        Float
+  year_last_registered Int
+  expiration_date     DateTime
+  archived            Boolean @default(false)
+
+  Assignment          Assignment[]
+}
+
+model Assignment {
+  id           Int       @id @default(autoincrement())
+  van_id       Int
+  operator_id  Int?
+  driver_id    Int?
+  assigned_at  DateTime   @default(now())
+  status       AssignmentStatus @default(idle)
+  queued_at    DateTime? 
+  terminal     TerminalType @default(terminal1)
+  order        Int      @default(0) // Set a default value for the order field
+  queue_order  Int?
+  arrivalTime  DateTime?  // New field for arrival time
+  departureTime DateTime? // New field for departure time
+
+  Van          Van        @relation(fields: [van_id], references: [id])
+  Operator     Operator?  @relation(fields: [operator_id], references: [id])
+  Driver       Driver?    @relation(fields: [driver_id], references: [id])
+
+  Queue Queue[]
+}
+
+model Queue {
+  id               Int       @id @default(autoincrement())
+  assignment_id    Int
+  status           QueueStatus
+  current_terminal Int?
+  queued_at        DateTime?
+
+  Assignment       Assignment @relation(fields: [assignment_id], references: [id])
+}
+
+model Role {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+
+  User User[]
+}
+
+model Terminal {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  User User[]
+}
+
+model User {
+  id          Int       @id @default(autoincrement())
+  username    String    @unique
+  password    String
+  terminal_id Int
+  role_id     Int?
+  archived    Boolean   @default(false)
+
+  Role        Role?     @relation(fields: [role_id], references: [id])
+  Terminal    Terminal? @relation(fields: [terminal_id], references: [id])
+}
+
+enum AssignmentStatus {
+  idle
+  queued
+  waiting
+  departed
+  coming
+  arrived
+}
+
+enum QueueStatus {
+  waiting
+  departed
+  arrived
+}
+
+enum TerminalType {
+  terminal1
+  terminal2
+}

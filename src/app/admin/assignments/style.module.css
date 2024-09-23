@@ -1,0 +1,11 @@
+/* style.module.css */
+.customOption {
+  padding: 8px;
+  border-radius: 8px;
+  background-color: white;
+  color: black;
+}
+
+.customOption:hover {
+  background-color: #f0f0f0;
+}

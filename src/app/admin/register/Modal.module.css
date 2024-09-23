@@ -1,0 +1,36 @@
+/* Modal.module.css */
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+ 
+  padding: 20px;
+  height: 460px;
+  border-radius: 8px;
+  position: relative;
+  width: 100%;
+  max-width: 850px;
+  overflow-y: auto;
+  margin-left: 24rem;
+  margin-bottom: 5rem;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
