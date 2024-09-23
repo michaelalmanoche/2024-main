@@ -403,9 +403,9 @@ const OperatorForm = () => {
 
         <div className=" flex flex-col overflow-x-auto sm:-mx-6 lg:-mx-8" style={{marginTop:'1rem'}}>
             {/* TABLE */}
-<div className="inline-block  overflow-x-auto relative">
-<table className="bg-white rounded-lg mx-auto ml-60 overflow-hidden" style={{ tableLayout: 'fixed', width: '83%', minWidth: '1000px' }}>
-  <thead className="bg-blue-400 text-xs">
+<div className="inline-block max-w-full  overflow-x-auto relative">
+<table className="bg-white rounded-lg mx-auto ml-60 overflow-hidden w-full" style={{ tableLayout: 'fixed', width: '83%', minWidth: '1000px' }}>
+  <thead className="bg-blue-400 text-xs text-center">
     <tr className="text-white">
       <th className="px-4 py-2 text-left font-normal rounded-l-lg" style={{ minWidth: '120px' }}>First Name</th>
       <th className="px-4 py-2 text-left font-normal" style={{ minWidth: '120px' }}>Middle Name</th>

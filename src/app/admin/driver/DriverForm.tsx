@@ -211,7 +211,7 @@ const OperatorForm = () => {
         if (error.response?.status === 409) {
           alert("License number already registered");
         } else {
-          alert("Failed to register operator");
+          alert("Failed to register Driver");
         }
       }
     }
@@ -291,7 +291,7 @@ const OperatorForm = () => {
 
     
      {/* Register Modal */}
-<Modal isOpen={isRegisterModalOpen} onClose={handleRegisterModalClose} title="Register Operator">
+<Modal isOpen={isRegisterModalOpen} onClose={handleRegisterModalClose} title="Register Driver">
   <form onSubmit={handleRegisterSubmit} className="space-y-8 p-2 sm:p-2">
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2" style={{marginBottom:'-1.2rem'}}>
       <div >
@@ -378,20 +378,61 @@ const OperatorForm = () => {
           <h3 className="text-lg font-semibold text-gray-900">License Information</h3>
         </div>
 
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
   <div className="">
-        <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">License No</label>
-        <input type="text" name="license_no" value={operator.license_no} onChange={handleRegisterChange} required
-          className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="license no." />
-      </div>
-      <div className="">
-        <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Type</label>
-        <input type="text" name="type" value={operator.type} onChange={handleRegisterChange} required
-          className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="type" />
-      </div>
-      <div className="">
-      <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">DL Codes</label>
-      <div className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
+    <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">License No</label>
+    <input
+      type="text"
+      name="license_no"
+      value={operator.license_no}
+      onChange={handleRegisterChange}
+      required
+      className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block  p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase"
+      placeholder="license no."
+    />
+  </div>
+
+  <div className="ml-[-5rem]">
+    <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Birth Date</label>
+    <input
+      type="date"
+      name="expiration_date"
+      value={operator.expiration_date}
+      onChange={handleRegisterChange}
+      required
+      className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase"
+      placeholder="expiration date"
+    />
+  </div>
+
+  <div className="ml-[-14rem]">
+    <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Expiration Date</label>
+    <input
+      type="date"
+      name="expiration_date"
+      value={operator.expiration_date}
+      onChange={handleRegisterChange}
+      required
+      className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase"
+      placeholder="expiration date"
+    />
+  </div>
+
+  
+
+</div>
+
+
+
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 mt-4">
+  
+<div className="">
+    <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">DL Codes</label>
+    <div style={{width:'13.4rem'}}  
+    className="bg-gray-50 border-2 border-gray-300
+     text-gray-900 text-sm rounded-lg block  p-2.5 placeholder-gray-400
+      uppercase">
+      <div className="grid grid-cols-3 ">
         {dlOptions.map(option => (
           <div key={option} className="flex items-center mb-2">
             <input
@@ -407,16 +448,17 @@ const OperatorForm = () => {
         ))}
       </div>
     </div>
+  </div>
 
-
-
-
-
-    <div className="">
-      <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Conditions</label>
-      <div className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
+  <div className="ml-[-14rem]">
+    <label className="block mb-2 text-sm font-medium text-gray-900 uppercase ">Conditions</label>
+    <div style={{width:'9rem'}}  
+     className="bg-gray-50 border-2 border-gray-300
+     text-gray-900 text-sm rounded-lg block w-96 p-2.5 placeholder-gray-400
+       uppercase">
+      <div className="grid grid-cols-3">
         {conditionOptions.map(option => (
-          <div key={option} className="flex items-center mb-2">
+          <div key={option} className="flex items-center mb-2 mr-4">
             <input
               type="checkbox"
               name="conditions"
@@ -430,6 +472,8 @@ const OperatorForm = () => {
         ))}
       </div>
     </div>
+  </div>
+</div>
 
 
 
@@ -438,12 +482,7 @@ const OperatorForm = () => {
         <input type="text" name="conditions" value={operator.conditions} onChange={handleRegisterChange} //required
           className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="conditions" />
       </div> */}
-      <div className="">
-        <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Expiration Date</label>
-        <input type="date" name="expiration_date" value={operator.expiration_date} onChange={handleRegisterChange} required
-          className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="expiration date" />
-      </div>
-  </div>
+      
 
   <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
           <h3 className="text-lg font-semibold text-gray-900">Incase of emergency</h3>
@@ -470,7 +509,7 @@ const OperatorForm = () => {
       
     <div className="flex justify-end space-x-4">
       <button type="submit" className="text-white inline-flex items-center bg-emerald-500 hover:bg-emerald-600 focus:ring-4 focus:ring-green-500 font-medium rounded-lg text-sm px-5 py-2.5">
-        Register Operator
+        Save
       </button>
       <button type="button" onClick={handleRegisterModalClose} className="text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5">
         Cancel
