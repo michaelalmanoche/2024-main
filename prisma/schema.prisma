@@ -17,13 +17,16 @@ model Operator {
   city               String
   brgy               String
   street             String
-  type               String   // New field for driver or operator
-  emergency_name     String   // New field for emergency contact name
-  emergency_address  String   // New field for emergency contact address
+  birth_date         DateTime // New field for birth date
+  emergency_firstname String
+  emergency_middlename String
+  emergency_lastname  String
+  emergency_region    String
+  emergency_city      String
+  emergency_brgy      String
+  emergency_street   String
   emergency_contact  String   // New field for emergency contact number
   archived           Boolean  @default(false)
-
-  Assignment         Assignment[]
 }
 
 model Driver {
@@ -36,14 +39,19 @@ model Driver {
   city               String
   brgy               String
   street             String
-  type               String   // New field for driver or operator
   license_no         String   @unique
-  dl_codes           String[]   // New field for DL codes
-  conditions         String[]  // New field for conditions
-  expiration_date    DateTime // New field for expiration date
-  emergency_name     String   // New field for emergency contact name
-  emergency_address  String   // New field for emergency contact address
-  emergency_contact  String   // New field for emergency contact number
+  dl_codes           String[]
+  conditions         String[]
+  expiration_date    DateTime
+  birth_date         DateTime
+  emergency_firstname String
+  emergency_middlename String
+  emergency_lastname String
+  emergency_region   String
+  emergency_city     String
+  emergency_brgy     String
+  emergency_street   String
+  emergency_contact  String
   archived           Boolean  @default(false)
 
   Assignment         Assignment[]
@@ -52,7 +60,7 @@ model Driver {
 model Van {
   id                  Int     @id @default(autoincrement())
   mv_file_no          String
-  plate_number        String
+  plate_number        String  @unique
   engine_no           String
   chassis_no          String
   denomination        String
@@ -71,14 +79,13 @@ model Van {
   year_last_registered Int
   expiration_date     DateTime
   archived            Boolean @default(false)
-
   Assignment          Assignment[]
 }
 
 model Assignment {
   id           Int       @id @default(autoincrement())
   van_id       Int
-  operator_id  Int?
+  
   driver_id    Int?
   assigned_at  DateTime   @default(now())
   status       AssignmentStatus @default(idle)
@@ -90,7 +97,7 @@ model Assignment {
   departureTime DateTime? // New field for departure time
 
   Van          Van        @relation(fields: [van_id], references: [id])
-  Operator     Operator?  @relation(fields: [operator_id], references: [id])
+  
   Driver       Driver?    @relation(fields: [driver_id], references: [id])
 
   Queue Queue[]

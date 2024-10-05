@@ -19,8 +19,13 @@ export interface Operator {
   dl_codes: string;
   conditions: string;
   expiration_date: string;
-  emergency_name: string;
-  emergency_address: string;
+  emergency_firstname: string;
+  emergency_middlename: string;
+  emergency_lastname: string;
+  emergency_region: string;
+  emergency_city: string;
+  emergency_brgy: string;
+  emergency_street: string;
   emergency_contact: string;
 }
 
@@ -82,7 +87,13 @@ export interface Driver {
   dl_codes: string;
   conditions: string;
   expiration_date: string;
-  emergency_name: string;
-  emergency_address: string;
+  birth_date: string;
+  emergency_firstname: string;
+  emergency_middlename: string;
+  emergency_lastname: string;
+  emergency_region: string;
+  emergency_city: string;
+  emergency_brgy: string;
+  emergency_street: string;
   emergency_contact: string;
 }

@@ -38,18 +38,19 @@ export async function PUT(req: NextRequest) {
     firstname,
     middlename,
     lastname,
-    
     contact,
     region,
     city,
     brgy,
     street,
-    
-    
-    
-    
-    emergency_name,
-    emergency_address,
+    birth_date,
+    emergency_firstname,
+    emergency_middlename,
+    emergency_lastname,
+    emergency_region,
+    emergency_city,
+    emergency_brgy,
+    emergency_street,
     emergency_contact,
     archived,
   } = await req.json();
@@ -60,18 +61,20 @@ export async function PUT(req: NextRequest) {
       data: {
         firstname,
         middlename,
-        lastname,
-        
+        lastname, 
         contact,
         region,
         city,
         brgy,
         street,
-        
-       
-        
-        emergency_name,
-        emergency_address,
+        birth_date,
+        emergency_firstname,
+        emergency_middlename,
+        emergency_lastname,
+        emergency_region,
+        emergency_city,
+        emergency_brgy,
+        emergency_street,
         emergency_contact,
         archived,
       },

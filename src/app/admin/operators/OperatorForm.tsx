@@ -16,12 +16,16 @@ const OperatorForm = () => {
     city: "",
     brgy: "",
     street: "",
-    type: "",
     dl_codes: "",
     conditions: "",
     expiration_date: "",
-    emergency_name: "",
-    emergency_address: "",
+    emergency_firstname: "",
+    emergency_middlename: "",
+    emergency_lastname: "",
+    emergency_region: "",
+    emergency_city: "",
+    emergency_brgy: "",
+    emergency_street: "",
     emergency_contact: "",
     archived: false,
   });
@@ -136,10 +140,10 @@ const OperatorForm = () => {
   };
 
   const handleRegisterChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = event.target;
+    const { name, value,checked } = event.target;
     setOperator((prevOperator) => ({
       ...prevOperator,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: name === "archived" ? checked : value,
     }));
   };
 
@@ -160,12 +164,17 @@ const OperatorForm = () => {
         city: "",
         brgy: "",
         street: "",
-        type: "",
+      
         dl_codes: "",
         conditions: "",
         expiration_date: "",
-        emergency_name: "",
-        emergency_address: "",
+        emergency_firstname: "",
+        emergency_middlename: "",
+        emergency_lastname: "",
+        emergency_region: "",
+        emergency_city: "",
+        emergency_brgy: "",
+        emergency_street: "",
         emergency_contact: "",
         archived: false,
       });
@@ -255,6 +264,7 @@ const OperatorForm = () => {
           className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="first name"/>
       </div>
       
+      
       <div className="">
         <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Middle Name</label>
         <input type="text" name="middlename" value={operator.middlename} onChange={handleRegisterChange} className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="middle name" required />
@@ -264,58 +274,43 @@ const OperatorForm = () => {
         <input type="text" name="lastname" value={operator.lastname} onChange={handleRegisterChange} required 
         className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="last name" />
       </div>
-      
           
-      
-          
-      </div>
+    </div>
 
-       {/* EMERGENCY CONTACT  */}
+       {/* Contact Information  */}
        <div className="flex justify-between items-center pb-4 mb-4 rounded-t  border-b sm:mb-5 dark:border-gray-600">
           <h3 className="text-lg font-semibold text-gray-900">Contact Information</h3>
         </div>
 
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+  
 
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 ">
 
-  <div className="">
-  <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Contact Number</label>
-  <input   type="text"   name="contact"  value={operator.contact}   onChange={handleRegisterChange} 
-    onInput={(e) => { const target = e.target as HTMLInputElement; target.value = target.value.replace(/[^0-9]/g, '');
-    }} maxLength={11} 
-    required
-    className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" 
-    placeholder="contact no." 
-  />
-</div>
-
+      <div className="">
+        <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Region</label>
+        <select name="region" value={operator.region} onChange={Registerdropdown} required
+          className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
+          <option value="" disabled>Select Region</option>
+          <option value="NCR">NCR</option>
+          <option value="CAR">CAR</option>
+          <option value="Region I">Region I</option>
+          <option value="Region II">Region II</option>
+          <option value="Region III">Region III</option>
+          <option value="Region IV-A">Region IV-A</option>
+          <option value="Region IV-B">Region IV-B</option>
+          <option value="Region V">Region V</option>
+          <option value="Region VI">Region VI</option>
+          <option value="Region VII">Region VII</option>
+          <option value="Region VIII">Region VIII</option>
+          <option value="Region IX">Region IX</option>
+          <option value="Region X">Region X</option>
+          <option value="Region XI">Region XI</option>
+          <option value="Region XII">Region XII</option>
+          <option value="Region XIII">Region XIII</option>
+          <option value="BARMM">BARMM</option>
+        </select>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 ">
-      <div className="">
-  <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Region</label>
-  <select name="region" value={operator.region} onChange={Registerdropdown} required
-    className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
-    <option value="" disabled>Select Region</option>
-    <option value="NCR">NCR</option>
-    <option value="CAR">CAR</option>
-    <option value="Region I">Region I</option>
-    <option value="Region II">Region II</option>
-    <option value="Region III">Region III</option>
-    <option value="Region IV-A">Region IV-A</option>
-    <option value="Region IV-B">Region IV-B</option>
-    <option value="Region V">Region V</option>
-    <option value="Region VI">Region VI</option>
-    <option value="Region VII">Region VII</option>
-    <option value="Region VIII">Region VIII</option>
-    <option value="Region IX">Region IX</option>
-    <option value="Region X">Region X</option>
-    <option value="Region XI">Region XI</option>
-    <option value="Region XII">Region XII</option>
-    <option value="Region XIII">Region XIII</option>
-    <option value="BARMM">BARMM</option>
-  </select>
-</div>
       <div className="">
         <label htmlFor="city" className="block mb-2 text-sm font-medium text-gray-900 uppercase">City</label>
         <select id="city" name="city" value={operator.city} onChange={Registerdropdown} 
@@ -327,7 +322,7 @@ const OperatorForm = () => {
         </select>
       </div>
   
-  <div className="">
+      <div className="">
         <label htmlFor="brgy" className="block mb-2 text-sm font-medium text-gray-900 uppercase">Barangay</label>
         <select id="brgy" name="brgy" value={operator.brgy} onChange={Registerdropdown}
           className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
@@ -341,48 +336,112 @@ const OperatorForm = () => {
         </select>
       </div>
 
-  <div className="">
-            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Street</label>
+          <div className="">
+            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Street </label>
             <input type="text" name="street" value={operator.street} onChange={handleRegisterChange} required
-              className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="street name" />
+              className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-[58.1rem] p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="street name" />
           </div>
-      
-      
-      
+
   </div>
 
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="">
+            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Contact Number</label>
+            <input   type="text"   name="contact"  value={operator.contact}   onChange={handleRegisterChange}  onInput={(e) => { const target = e.target as HTMLInputElement; target.value = target.value.replace(/[^0-9]/g, '');}} maxLength={11} required className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-[22em] p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="contact no."  />
+          </div>
+      </div>
+
+      
+
+{/* Incase of emergency  */}
   <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
           <h3 className="text-lg font-semibold text-gray-900">Incase of emergency</h3>
         </div>
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div className="">
-        <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Name</label>
-        <input type="text" name="emergency_name" value={operator.emergency_name} onChange={handleRegisterChange} required
-          className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-56 p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="emergency name" />
-      </div>
-      <div className="" >
-        <label className="block mb-2 text-sm font-medium text-gray-900 uppercase" style={{marginLeft:'-4.9rem'}}>Address</label>
-        <input type="text" name="emergency_address" value={operator.emergency_address} onChange={handleRegisterChange} required
-          style={{marginLeft:'-4.9rem'}} className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-56 p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="emergency address" />
-      </div>
-
-      <div className="">
-  <label className="block mb-2 text-sm font-medium text-gray-900 uppercase" style={{marginLeft:'-9rem'}}>Contact Number</label>
-  <input 
-    type="tel" 
-    name="emergency_contact" 
-    value={operator.emergency_contact} 
-    onChange={handleRegisterChange} 
-    onInput={(e) => { const target = e.target as HTMLInputElement; target.value = target.value.replace(/[^0-9]/g, '');
-    }} maxLength={11} 
-    required
-    style={{marginLeft:'-9rem'}} 
-    className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-64 p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" 
-    placeholder="emergency contact number" 
-  />
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2" style={{marginBottom:'-1.2rem'}}>
+  <div className="mb-3">
+    <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">First Name</label>
+    <input type="text" name="emergency_firstname" value={operator.emergency_firstname} onChange={handleRegisterChange} required
+      className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="first name"/>
+  </div>
+  <div>
+    <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Middle Name</label>
+    <input type="text" name="emergency_middlename" value={operator.emergency_middlename} onChange={handleRegisterChange} className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="middle name" required />
+  </div>
+  <div>
+    <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Last Name</label>
+    <input type="text" name="emergency_lastname" value={operator.emergency_lastname} onChange={handleRegisterChange} required 
+      className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="last name" />
+  </div>
 </div>
 
-    </div>
+
+<div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+  <div>
+    <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Region</label>
+    <select name="emergency_region" value={operator.emergency_region} onChange={Registerdropdown} required
+      className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
+      <option value="" disabled>Select Region</option>
+      <option value="NCR">NCR</option>
+      <option value="CAR">CAR</option>
+      <option value="Region I">Region I</option>
+      <option value="Region II">Region II</option>
+      <option value="Region III">Region III</option>
+      <option value="Region IV-A">Region IV-A</option>
+      <option value="Region IV-B">Region IV-B</option>
+      <option value="Region V">Region V</option>
+      <option value="Region VI">Region VI</option>
+      <option value="Region VII">Region VII</option>
+      <option value="Region VIII">Region VIII</option>
+      <option value="Region IX">Region IX</option>
+      <option value="Region X">Region X</option>
+      <option value="Region XI">Region XI</option>
+      <option value="Region XII">Region XII</option>
+      <option value="Region XIII">Region XIII</option>
+      <option value="BARMM">BARMM</option>
+    </select>
+  </div>
+  <div>
+    <label htmlFor="emergency_city" className="block mb-2 text-sm font-medium text-gray-900 uppercase">City</label>
+    <select id="emergency_city" name="emergency_city" value={operator.emergency_city} onChange={Registerdropdown} 
+      className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
+      <option value="" disabled>Select City</option>
+      <option value="General Santos">General Santos</option>
+      <option value="Davao">Davao</option>
+      <option value="Cotabato">Cotabato</option>
+    </select>
+  </div>
+  <div>
+    <label htmlFor="emergency_brgy" className="block mb-2 text-sm font-medium text-gray-900 uppercase">Barangay</label>
+    <select id="emergency_brgy" name="emergency_brgy" value={operator.emergency_brgy} onChange={Registerdropdown}
+      className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
+      <option value="" disabled>Select Barangay</option>
+      <option value="Barangay Apopong">Barangay Apopong</option>
+      <option value="Barangay Baluan">Barangay Baluan</option>
+      <option value="Barangay Bula">Barangay Bula</option>
+      <option value="Barangay Buayan">Barangay Buayan</option>
+      <option value="Barangay Calumpang">Barangay Calumpang</option>
+      <option value="Barangay Dadiangas East">Barangay Dadiangas East</option>
+    </select>
+  </div>
+  <div>
+    <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Street</label>
+    <input type="text" name="emergency_street" value={operator.emergency_street} onChange={handleRegisterChange} required
+      className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-[58.1rem] p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="street name" />
+  </div>
+  
+</div>
+<div className="grid grid-cols-1 gap-4">
+  <div>
+    <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Contact Number</label>
+    <input type="text" name="emergency_contact" value={operator.emergency_contact} onChange={handleRegisterChange} 
+      onInput={(e) => { const target = e.target as HTMLInputElement; target.value = target.value.replace(/[^0-9]/g, ''); }} maxLength={11} 
+      required
+      className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-[19rem] p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" 
+      placeholder="contact no." 
+    />
+  </div>
+</div>
+
       
     <div className="flex justify-end space-x-4">
       <button type="submit" className="text-white inline-flex items-center bg-emerald-500 hover:bg-emerald-600 focus:ring-4 focus:ring-green-500 font-medium rounded-lg text-sm px-5 py-2.5">
@@ -543,10 +602,7 @@ const OperatorForm = () => {
 
       {/* View/Edit Modal */}
 {isViewModalOpen && selectedOperator && (
-  <Modal
-    isOpen={isViewModalOpen}
-    onClose={handleViewModalClose}
-    title={isEditMode ? "Edit Operator" : "View Operator"} // Add the title prop here
+  <Modal  isOpen={isViewModalOpen} onClose={handleViewModalClose} title={isEditMode ? "Edit Operator" : "View Operator"} // Add the title prop here
   >
     {!isEditMode ? (
       <div className="space-y-8 p-2 sm:p-2">
@@ -569,13 +625,17 @@ const OperatorForm = () => {
               {selectedOperator.lastname}
             </p>
           </div>
+        </div>
+
+          {/* Contact Information  */}
+       <div className="flex justify-between items-center pb-4 mb-4 rounded-t  border-b sm:mb-5 dark:border-gray-600">
+          <h3 className="text-lg font-semibold text-gray-900">Contact Information</h3>
+        </div>
+
+  
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 ">
           
-          <div>
-            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Contact</label>
-            <p className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
-              {selectedOperator.contact}
-            </p>
-          </div>
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Region</label>
             <p className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
@@ -596,56 +656,113 @@ const OperatorForm = () => {
           </div>
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Street</label>
-            <p className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
+            <p className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-[58.1rem] p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
               {selectedOperator.street}
             </p>
           </div>
+        </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div>
+                <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Contact Number</label>
+                <p className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-[19rem] p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
+                  {selectedOperator.contact}
+                </p>
+              </div>
+          </div>
           
           
           
+          {/* EMERGENCY CONTACT  */}
+        <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+          <h3 className="text-lg font-semibold text-gray-900">Incase of emergency</h3>
+        </div>
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2" style={{marginBottom:'-1.2rem'}}>
           
-          
-          
-          <div>
-            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Emergency Contact Name</label>
+        <div>
+            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">First Name</label>
             <p className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
-              {selectedOperator.emergency_name}
+              {selectedOperator.emergency_firstname}
             </p>
           </div>
           <div>
-            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Emergency Contact Address</label>
+            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Middle Name</label>
             <p className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
-              {selectedOperator.emergency_address}
+              {selectedOperator.emergency_middlename}
             </p>
           </div>
           <div>
-            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Emergency Contact Number</label>
+            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Last Name</label>
             <p className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
-              {selectedOperator.emergency_contact}
+              {selectedOperator.emergency_lastname}
             </p>
           </div>
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Region</label>
+            <p className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
+              {selectedOperator.emergency_region}
+            </p>
+          </div>
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">City</label>
+            <p className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
+              {selectedOperator.emergency_city}
+            </p>
+          </div>
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Barangay</label>
+            <p className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
+              {selectedOperator.emergency_brgy}
+            </p>
+          </div>
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Street</label>
+            <p className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-[58.1rem] p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
+              {selectedOperator.emergency_street}
+            </p>
+          </div>  
 
         </div>
-        <button
-          onClick={() => setIsEditMode(true)}
-          className="border-2 border-transparent text-white bg-blue-500 p-2 rounded-lg flex items-center justify-center hover:bg-transparent hover:border-2 hover:border-blue-600 hover:text-blue-700 transition-colors duration-300"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            width="20"
-            height="20"
-            className="stroke-current"
-            fill="none"
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div>
+                <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Contact Number</label>
+                <p className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-[19rem] p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
+                  {selectedOperator.emergency_contact}
+                </p>
+              </div>
+          </div>
+
+
+       {/* EDIT MODAL */}
+       <div className="flex space-x-4 justify-end">
+          <button
+            onClick={() => setIsEditMode(true)}
+            className="border-2 border-transparent text-white bg-blue-500 p-2 rounded-lg flex items-center justify-center hover:bg-transparent hover:border-2 hover:border-blue-600 hover:text-blue-700 transition-colors duration-300"
           >
-            <path d="M14.0737 3.88545C14.8189 3.07808 15.1915 2.6744 15.5874 2.43893C16.5427 1.87076 17.7191 1.85309 18.6904 2.39232C19.0929 2.6158 19.4769 3.00812 20.245 3.79276C21.0131 4.5774 21.3972 4.96972 21.6159 5.38093C22.1438 6.37312 22.1265 7.57479 21.5703 8.5507C21.3398 8.95516 20.9446 9.33578 20.1543 10.097L10.7506 19.1543C9.25288 20.5969 8.504 21.3182 7.56806 21.6837C6.63212 22.0493 5.6032 22.0224 3.54536 21.9686L3.26538 21.9613C2.63891 21.9449 2.32567 21.9367 2.14359 21.73C1.9615 21.5234 1.98636 21.2043 2.03608 20.5662L2.06308 20.2197C2.20301 18.4235 2.27297 17.5255 2.62371 16.7182C2.97444 15.9109 3.57944 15.2555 4.78943 13.9445L14.0737 3.88545Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-            <path d="M13 4L20 11" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-            <path d="M14 22L22 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-          <span className="ml-2">Update</span>
-        </button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              className="stroke-current"
+              fill="none"
+            >
+              <path d="M14.0737 3.88545C14.8189 3.07808 15.1915 2.6744 15.5874 2.43893C16.5427 1.87076 17.7191 1.85309 18.6904 2.39232C19.0929 2.6158 19.4769 3.00812 20.245 3.79276C21.0131 4.5774 21.3972 4.96972 21.6159 5.38093C22.1438 6.37312 22.1265 7.57479 21.5703 8.5507C21.3398 8.95516 20.9446 9.33578 20.1543 10.097L10.7506 19.1543C9.25288 20.5969 8.504 21.3182 7.56806 21.6837C6.63212 22.0493 5.6032 22.0224 3.54536 21.9686L3.26538 21.9613C2.63891 21.9449 2.32567 21.9367 2.14359 21.73C1.9615 21.5234 1.98636 21.2043 2.03608 20.5662L2.06308 20.2197C2.20301 18.4235 2.27297 17.5255 2.62371 16.7182C2.97444 15.9109 3.57944 15.2555 4.78943 13.9445L14.0737 3.88545Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+              <path d="M13 4L20 11" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+              <path d="M14 22L22 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span className="ml-2">Update</span>
+          </button>
+          <button
+            onClick={handleViewModalClose}
+            className="border-2 border-transparent text-white bg-red-500 p-2 rounded-lg flex items-center justify-center hover:bg-transparent hover:border-2 hover:border-red-600 hover:text-red-700 transition-colors duration-300"
+          >
+            
+            <span >Cancel</span>
+          </button>
+        </div>
       </div>
     ) : (
+      
       <form onSubmit={handleViewSubmit} className="space-y-8 p-2 sm:p-2">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <div>
@@ -663,36 +780,40 @@ const OperatorForm = () => {
             <input type="text" name="lastname" value={selectedOperator.lastname} onChange={handleViewChange} required 
             className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="last name" />
           </div>
+        </div>
+
+         {/* Contact Information  */}
+       <div className="flex justify-between items-center pb-4 mb-4 rounded-t  border-b sm:mb-5 dark:border-gray-600">
+          <h3 className="text-lg font-semibold text-gray-900">Contact Information</h3>
+        </div>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           
           <div>
-            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Contact</label>
-            <input type="text" name="contact" value={selectedOperator.contact} onChange={handleViewChange} required
-              className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="contact no." />
+            <label htmlFor="region" className="block mb-2 text-sm font-medium text-gray-900 uppercase">Region</label>
+            <select id="region" name="region" value={selectedOperator.region} onChange={Editdropdown}
+              className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
+              <option value="" disabled>Select Region</option>
+              <option value="NCR">NCR</option>
+              <option value="CAR">CAR</option>
+              <option value="Region I">Region I</option>
+              <option value="Region II">Region II</option>
+              <option value="Region III">Region III</option>
+              <option value="Region IV-A">Region IV-A</option>
+              <option value="Region IV-B">Region IV-B</option>
+              <option value="Region V">Region V</option>
+              <option value="Region VI">Region VI</option>
+              <option value="Region VII">Region VII</option>
+              <option value="Region VIII">Region VIII</option>
+              <option value="Region IX">Region IX</option>
+              <option value="Region X">Region X</option>
+              <option value="Region XI">Region XI</option>
+              <option value="Region XII">Region XII</option>
+              <option value="Region XIII">Region XIII</option>
+              <option value="BARMM">BARMM</option>
+            </select>
           </div>
-          <div>
-  <label htmlFor="region" className="block mb-2 text-sm font-medium text-gray-900 uppercase">Region</label>
-  <select id="region" name="region" value={selectedOperator.region} onChange={Editdropdown}
-    className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
-    <option value="" disabled>Select Region</option>
-    <option value="NCR">NCR</option>
-    <option value="CAR">CAR</option>
-    <option value="Region I">Region I</option>
-    <option value="Region II">Region II</option>
-    <option value="Region III">Region III</option>
-    <option value="Region IV-A">Region IV-A</option>
-    <option value="Region IV-B">Region IV-B</option>
-    <option value="Region V">Region V</option>
-    <option value="Region VI">Region VI</option>
-    <option value="Region VII">Region VII</option>
-    <option value="Region VIII">Region VIII</option>
-    <option value="Region IX">Region IX</option>
-    <option value="Region X">Region X</option>
-    <option value="Region XI">Region XI</option>
-    <option value="Region XII">Region XII</option>
-    <option value="Region XIII">Region XIII</option>
-    <option value="BARMM">BARMM</option>
-  </select>
-</div>
+
           <div>
             <label htmlFor="city" className="block mb-2 text-sm font-medium text-gray-900 uppercase">City</label>
             <select id="city" name="city" value={selectedOperator.city} onChange={Editdropdown}
@@ -703,6 +824,7 @@ const OperatorForm = () => {
               <option value="Cotabato">Cotabato</option>
             </select>
           </div>
+
           <div>
             <label htmlFor="brgy" className="block mb-2 text-sm font-medium text-gray-900 uppercase">Barangay</label>
             <select id="brgy" name="brgy" value={selectedOperator.brgy} onChange={Editdropdown}
@@ -726,37 +848,123 @@ const OperatorForm = () => {
               <option value="Barangay Upper Labay">Barangay Upper Labay</option>
             </select>
           </div>
+
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Street</label>
             <input type="text" name="street" value={selectedOperator.street} onChange={handleViewChange} required
-              className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="street name" />
+              className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-[58.1rem] p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="street name" />
           </div>
-          
-          
-          
+        </div>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+         <div>
+            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Contact Number</label>
+            <input type="text" name="contact" value={selectedOperator.contact} onChange={handleViewChange} required
+              className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-[19rem] l p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="contact no." />
+          </div>
+    </div>
+            
+      {/* EMERGENCY CONTACT  */}
+      <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+          <h3 className="text-lg font-semibold text-gray-900">Incase of emergency</h3>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2" style={{marginBottom:'-1.2rem'}}>
           
           <div>
-            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Name</label>
-            <input type="text" name="emergency_name" value={selectedOperator.emergency_name} onChange={handleViewChange} required
+            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">First Name</label>
+            <input type="text" name="emergency_firstname" value={selectedOperator.emergency_firstname} onChange={handleViewChange} required
               className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="emergency name" />
           </div>
           <div>
-            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Address</label>
-            <input type="text" name="emergency_address" value={selectedOperator.emergency_address} onChange={handleViewChange} required
-              className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="emergency address" />
+            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Middle Name</label>
+            <input type="text" name="emergency_middlename" value={selectedOperator.emergency_middlename} onChange={handleViewChange} required
+              className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="emergency middle name" />
           </div>
           <div>
-            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Contact Number</label>
-            <input type="tel" name="emergency_contact" value={selectedOperator.emergency_contact} onChange={handleViewChange} required
-              className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="emergency contact number" />
+            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Last Name</label>
+            <input type="text" name="emergency_lastname" value={selectedOperator.emergency_lastname} onChange={handleViewChange} required
+              className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="emergency last name" />
           </div>
         </div>
-        <button
-            type="submit"
-            className="border-2 border-transparent text-white bg-blue-500 p-2 w-full sm:w-auto 
-            rounded-lg flex items-center justify-center hover:bg-transparent hover:border-2
-            hover:border-blue-600 hover:text-blue-700 transition-colors duration-300" style={{width:'6rem'}}
-          >
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          
+          <div>
+            <label htmlFor="region" className="block mb-2 text-sm font-medium text-gray-900 uppercase">Region</label>
+            <select id="region" name="emergency_region" value={selectedOperator.emergency_region} onChange={Editdropdown}
+              className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
+              <option value="" disabled>Select Region</option>
+              <option value="NCR">NCR</option>
+              <option value="CAR">CAR</option>
+              <option value="Region I">Region I</option>
+              <option value="Region II">Region II</option>
+              <option value="Region III">Region III</option>
+              <option value="Region IV-A">Region IV-A</option>
+              <option value="Region IV-B">Region IV-B</option>
+              <option value="Region V">Region V</option>
+              <option value="Region VI">Region VI</option>
+              <option value="Region VII">Region VII</option>
+              <option value="Region VIII">Region VIII</option>
+              <option value="Region IX">Region IX</option>
+              <option value="Region X">Region X</option>
+              <option value="Region XI">Region XI</option>
+              <option value="Region XII">Region XII</option>
+              <option value="Region XIII">Region XIII</option>
+              <option value="BARMM">BARMM</option>
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="city" className="block mb-2 text-sm font-medium text-gray-900 uppercase">City</label>
+            <select id="city" name="emergency_city" value={selectedOperator.emergency_city} onChange={Editdropdown}
+              className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
+              <option value="" disabled>Select City</option>
+              <option value="General Santos">General Santos</option>
+              <option value="Davao">Davao</option>
+              <option value="Cotabato">Cotabato</option>
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="brgy" className="block mb-2 text-sm font-medium text-gray-900 uppercase">Barangay</label>
+            <select id="brgy" name="emergency_brgy" value={selectedOperator.emergency_brgy} onChange={Editdropdown}
+              className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase">
+              <option value="" disabled>Select Barangay</option>
+              <option value="Barangay Apopong">Barangay Apopong</option>
+              <option value="Barangay Baluan">Barangay Baluan</option>
+              <option value="Barangay Bula">Barangay Bula</option>
+              <option value="Barangay Buayan">Barangay Buayan</option>
+              <option value="Barangay Calumpang">Barangay Calumpang</option>
+              <option value="Barangay Dadiangas East">Barangay Dadiangas East</option>
+              <option value="Barangay Dadiangas North">Barangay Dadiangas North</option>
+              <option value="Barangay Dadiangas South">Barangay Dadiangas South</option>
+              <option value="Barangay Dadiangas West">Barangay Dadiangas West</option>
+              <option value="Barangay Labangal">Barangay Labangal</option>
+              <option value="Barangay Lagao">Barangay Lagao</option>
+              <option value="Barangay Mabuhay">Barangay Mabuhay</option>
+              <option value="Barangay San Isidro">Barangay San Isidro</option>
+              <option value="Barangay Sinawal">Barangay Sinawal</option>
+              <option value="Barangay Tambler">Barangay Tambler</option>
+              <option value="Barangay Upper Labay">Barangay Upper Labay</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Street</label>
+            <input type="text" name="emergency_street" value={selectedOperator.emergency_street} onChange={handleViewChange} required
+              className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-[58.1rem] p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="street name" />
+          </div>
+        </div>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+         <div>
+            <label className="block mb-2 text-sm font-medium text-gray-900 uppercase">Contact Number</label>
+            <input type="text" name="emergency_contact" value={selectedOperator.emergency_contact} onChange={handleViewChange} required
+              className="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg block w-[19rem] l p-2.5 placeholder-gray-400 focus:border-green-600 focus:outline-none uppercase" placeholder="contact no." />
+          </div>
+    </div>
+    <div className="flex space-x-4 justify-end">
+        <button type="submit" className="border-2 border-transparent text-white bg-blue-500 p-2 w-full sm:w-auto rounded-lg flex items-center justify-center hover:bg-transparent hover:border-2 hover:border-blue-600 hover:text-blue-700 transition-colors duration-300" style={{width:'6rem'}} >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -770,6 +978,13 @@ const OperatorForm = () => {
             </svg>
             <span className="ml-2">Save</span>
           </button>
+          <button onClick={handleViewModalClose}
+            className="border-2 border-transparent text-white bg-red-500 p-2 rounded-lg flex items-center justify-center hover:bg-transparent hover:border-2 hover:border-red-600 hover:text-red-700 transition-colors duration-300"
+          >
+            
+            <span >Cancel</span>
+          </button>
+    </div>
       </form>
     )}
   </Modal>
